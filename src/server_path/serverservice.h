@@ -1,9 +1,7 @@
 #ifndef SERVERSERVICE_H
 #define SERVERSERVICE_H
 
-#include <list>
-#include <map>
-
+#include "alivematrix.h"
 #include "netservice.h"
 #include "netmessage_struct.h"
 
@@ -32,6 +30,7 @@ private:
     };
     const int kServerID_ = network_imitation::getServerID();
     std::map<int, UserParam> user_list_;
+    AliveMatrix liveclient_controler_;
 };
 
 }

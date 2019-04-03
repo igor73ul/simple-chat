@@ -8,10 +8,12 @@ using namespace network_imitation;
 
 trafficStorage ServerService::takeData() {
     trafficStorage result;
-    for(auto & oneUser : user_list_)
-    {
-        result.emplace(oneUser.first, std::move(oneUser.second.messagelist));
-        oneUser.second.messagelist.clear();
+    auto del_list = liveclient_controler_.eraselist();
+    for(auto user_id : del_list)//Согласно списку на удаление убираем этих абонентов
+        delUser(user_id);
+    for(auto & oneuser : user_list_) {
+        result.emplace(oneuser.first, std::move(oneuser.second.messagelist));
+        oneuser.second.messagelist = {};
     }
     return result;
 }
@@ -71,18 +73,22 @@ void ServerService::reSendAliveMsg_if_req() {
 void ServerService::processing(const NetMessage & msg) {
     switch(msg.command_id) {
         case NetMessage::CommandCode::kAlliveMsg: {
+            liveclient_controler_.update(msg.sender_id);
             break;
         }
         case NetMessage::CommandCode::kTextMsg: {
             reSendText(msg.text, msg.sender_id);
+            liveclient_controler_.update(msg.sender_id);
             break;
         }
         case NetMessage::CommandCode::kAddUser: {
             addUser(msg.text, msg.sender_id);
+            liveclient_controler_.insert(msg.sender_id);
             break;
         }
         case NetMessage::CommandCode::kDelUser: {
             delUser(msg.sender_id);
+            liveclient_controler_.del(msg.sender_id);
         }break;
         default: {
             break;

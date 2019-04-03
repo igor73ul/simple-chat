@@ -21,7 +21,6 @@ private:
 
     ServerService service_;//Сервисная часть выделена в отдельный класс (для удобства)
     network_imitation::NetService net_controller_;
-    AliveMatrix liveclient_controler_;
 };
 
 }
