@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/style">
+        <file>qss/coffee.qss</file>
+    </qresource>
+    <qresource prefix="/ico">
+        <file>ico/control.png</file>
+        <file>ico/icon-fail.png</file>
+        <file>ico/icon-ok.png</file>
+    </qresource>
+</RCC>

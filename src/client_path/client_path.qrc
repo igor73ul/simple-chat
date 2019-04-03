@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/ico">
+        <file>ico/background.png</file>
+        <file>ico/email.png</file>
+        <file>ico/fond.png</file>
+        <file>ico/fond-white.png</file>
+        <file>ico/fond-white2.png</file>
+    </qresource>
+</RCC>

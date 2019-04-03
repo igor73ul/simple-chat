@@ -1,0 +1,5 @@
+add_subdirectory(configreader)
+add_subdirectory(netservice)
+add_subdirectory(server_path)
+add_subdirectory(client_path)
+add_subdirectory(mainservice)

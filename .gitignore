@@ -1,0 +1,16 @@
+*.so
+*.so.*
+*.o
+*.a
+*.dll
+ui_*.h
+moc_*
+bin/
+lib/
+include/
+*pro.user
+*pro.user.*
+qrc_*.cpp
+Makefile
+Makefile.*
+CMakeLists.txt.user
