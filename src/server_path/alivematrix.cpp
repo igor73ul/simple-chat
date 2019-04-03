@@ -13,11 +13,12 @@ AliveMatrix::AliveState AliveMatrix::reduce(AliveState val) const  noexcept{
         case AliveMatrix::AliveState::kUpdateNow:
             return AliveMatrix::AliveState::kUpdatePrev;
         case AliveMatrix::AliveState::kUpdatePrev:
+            return AliveMatrix::AliveState::kUpdateLast;
+        case AliveMatrix::AliveState::kUpdateLast:
             return AliveMatrix::AliveState::kLost;
         default:
             return AliveMatrix::AliveState::kLost;
     }
-
 }
 
 std::list<int> AliveMatrix::eraselist() {

@@ -18,6 +18,7 @@ private:
     enum class AliveState {
         kUpdateNow=0, //Пришло сообщение
         kUpdatePrev, //Собщение с прошлой итерации
+        kUpdateLast, //Кандидат на вылет
         kLost //Давно не было обновлений
     };
     AliveState reduce(AliveState) const noexcept; //Получить следующее (худшее) состояние
