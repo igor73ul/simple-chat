@@ -31,6 +31,7 @@ public:
     void load();//загрузить все сообщения из хранилища для клиента
     void sendText(const QString &);//отправить текстовое сообщение в хранилище
     void reconnect();
+    void disconnect();
 private:
     void run();//один "такт" работы с сервером
     void sendAllivemsg(std::list<network_imitation::NetMessage> &);

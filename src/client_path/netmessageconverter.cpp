@@ -13,12 +13,16 @@ NetMessageConverter::NetMessageConverter(const QString & name, const int updatin
 }
 
 NetMessageConverter::~NetMessageConverter() {
-    output_traffic_.push_back(NetMessage(kUniqClientID_, NetMessage::CommandCode::kDelUser, std::string()));
+    disconnect();
     stop();
 }
 
 void NetMessageConverter::reconnect() {
     output_traffic_.push_back(NetMessage(kUniqClientID_, NetMessage::CommandCode::kAddUser, myusername_.toStdString()));
+}
+
+void NetMessageConverter::disconnect() {
+    output_traffic_.push_back(NetMessage(kUniqClientID_, NetMessage::CommandCode::kDelUser, std::string()));
 }
 
 void NetMessageConverter::load() {

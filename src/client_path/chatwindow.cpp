@@ -134,6 +134,7 @@ void ChatWindow::timerEvent(QTimerEvent *timerID) {
             return;
         }
         killTimer(timerID->timerId());
+        netclient_.disconnect();
         chat_window_->sendButton->setDisabled(true);
         chat_window_->textEdit->setDisabled(true);
         chat_window_->clientList->clear();
