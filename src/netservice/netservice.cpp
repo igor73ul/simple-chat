@@ -48,6 +48,8 @@ BlockedInformation getAccesToStorage() {
 int getNewClientUniqID() noexcept {
     static int kUniqeID = getServerID();//уникальные идентификаторы для подключений
     ++kUniqeID;
+    //предположим что не сможем израсходовать такое количество,
+    //иначе придётся делать пул ID-шников и следить какие освобождаются/занимаются
     return kUniqeID;
 }
 

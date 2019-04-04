@@ -17,9 +17,8 @@ public:
     void run();//один "такт" работы сервера
 private:
     bool readTraffic();//забираем все сообщения для сервера и обрабатываем их
-    bool delLostContact();//проверяем кто из клиентов на связи
-
-    ServerService service_;//Сервисная часть выделена в отдельный класс (для удобства)
+    //Сервисная часть - разбор и накопление информации(выделена в отдельный класс для удобства)
+    ServerService service_;
     network_imitation::NetService net_controller_;
 };
 
