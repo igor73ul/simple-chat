@@ -1,7 +1,7 @@
 #ifndef ALIVEMATRIX_H
 #define ALIVEMATRIX_H
 
-#include <map>
+#include <unordered_map>
 #include <list>
 
 namespace  simpleserver {
@@ -23,7 +23,7 @@ private:
     };
     AliveState reduce(AliveState) const noexcept; //Получить следующее (худшее) состояние
     bool isAlive(AliveState) const noexcept; //оценить состояние (жив ли)
-    std::map<int, AliveState> matrix_;
+    std::unordered_map<int, AliveState> matrix_;
 };
 
 inline void AliveMatrix::update(const int kUserId) {

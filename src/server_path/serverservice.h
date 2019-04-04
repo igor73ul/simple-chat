@@ -29,7 +29,7 @@ private:
         std::list<network_imitation::NetMessage> messagelist;
     };
     const int kServerID_ = network_imitation::getServerID();
-    std::map<int, UserParam> user_list_;
+    std::unordered_map<int, UserParam> user_list_;
     AliveMatrix liveclient_controler_;
 };
 

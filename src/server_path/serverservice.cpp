@@ -21,12 +21,12 @@ trafficStorage ServerService::takeData() {
 void ServerService::addUser(const std::string &user, const int userID) {
     auto finalUserName(user);
     //Проверяем используется ли имя, которое просит клиент для себя
-    if(user_list_.end() != std::find_if(user_list_.begin(), user_list_.end(),
-                                      [finalUserName](std::pair<int, UserParam> val) {
+    auto iter = std::find_if(user_list_.begin(), user_list_.end(),[finalUserName](std::pair<int, UserParam> val) {
         if(val.second.username == finalUserName)
             return true;
         return false;
-    }))
+    });
+    if(iter != user_list_.end() && iter->first != userID)
         finalUserName = user + '-' + std::to_string(userID);
     //отправляем новому абоненту его имя
     std::list<NetMessage> currentClients = {NetMessage(kServerID_, NetMessage::CommandCode::kAddUser, finalUserName)};
