@@ -1,7 +1,7 @@
-#Минимальная версия CMake выбрана на основе той версии, что была под рукой
+﻿#Минимальная версия CMake выбрана на основе той версии, что была под рукой
 cmake_minimum_required(VERSION 2.8.12)
 
-SET(PROJECTNAME chat_application)
+SET(PROJECTNAME "chat_application")
 project(${PROJECTNAME})
 SET(CMAKE_BUILD_TYPE Release)
 message ("Project generation: " ${PROJECTNAME})
@@ -22,8 +22,9 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 #Qt Libs
-#set (CMAKE_PREFIX_PATH "C:/Qt/Qt5.7.0/5.7/mingw53_32/")
+set (CMAKE_PREFIX_PATH "C:/Qt5.9.7/5.9.7/msvc2015_64")
 #set (CMAKE_PREFIX_PATH "/opt/Qt5.1.1/5.1.1/gcc_64/")
 #set(CMAKE_MAKE_PROGRAM)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
