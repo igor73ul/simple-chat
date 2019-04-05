@@ -1,39 +1,25 @@
 #include "widget.h"
 
-#include <QMessageBox>
-
-#include "client_path.h"
+#include "chatwindow.h"
 
 namespace  mainservice_widget {
 
-ManageWindow::ManageWindow(QWidget *parent) : QWidget(parent),
-    ui_form_(new Ui::Widget), net_server_(new simpleserver::Server_path),
-    kErrorMessageUser_("Can`t create new user!"), kErrorMessageServer_("Can`t create server!"),
-    kErrorTitle_("Error"),
-    kConnectIco_(":/ico/ico/icon-ok.png"), kDisconnectIco_(":/ico/ico/icon-fail.png") {
+ManageWindow::ManageWindow(QWidget *parent) : QWidget(parent), ui_form_(new Ui::Widget),
+    kConnectIco_(":/ico/ico/icon-ok.png") {
     ui_form_->setupUi(this);
-    ui_form_->label->setPixmap(kDisconnectIco_);
+    ui_form_->label->setPixmap(kConnectIco_);
+    net_server_.moveToThread(&server_thread_);
+    server_thread_.start();
 }
 
-void ManageWindow::on_startServer_toggled(bool checked) {
-    ui_form_->startServer->setEnabled(!checked);
-    ui_form_->stopServer->setEnabled(checked);
-    ui_form_->newClient->setEnabled(checked);
-    if(checked) {
-        ui_form_->label->setPixmap(kConnectIco_);
-        if(!net_server_->start()) {
-            QMessageBox::critical(this, kErrorTitle_, kErrorMessageServer_);
-            QCoreApplication::exit(-1);
-        }
-    } else {
-        ui_form_->label->setPixmap(kDisconnectIco_);
-        net_server_->stop();
-    }
+ManageWindow::~ManageWindow() {
+    server_thread_.quit();
+    server_thread_.wait();
 }
 
 void ManageWindow::on_newClient_released() {
-    if(!ClientPath::make_client())
-        QMessageBox::critical(this, kErrorTitle_, kErrorMessageUser_);
+    auto client = new chatclient::ChatWindow();
+    QMetaObject::invokeMethod(&net_server_, "registerNewUser", Qt::QueuedConnection, Q_ARG(QObject*, client));
 }
 
 void ManageWindow::closeEvent(QCloseEvent *) {

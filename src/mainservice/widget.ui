@@ -61,6 +61,9 @@
    </item>
    <item>
     <widget class="QPushButton" name="startServer">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="minimumSize">
       <size>
        <width>40</width>
@@ -118,7 +121,7 @@
    <item>
     <widget class="QPushButton" name="newClient">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="minimumSize">
       <size>

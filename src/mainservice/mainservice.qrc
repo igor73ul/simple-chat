@@ -6,5 +6,10 @@
         <file>ico/control.png</file>
         <file>ico/icon-fail.png</file>
         <file>ico/icon-ok.png</file>
+        <file>ico/background.png</file>
+        <file>ico/email.png</file>
+        <file>ico/fond-white.png</file>
+        <file>ico/fond-white2.png</file>
+        <file>ico/fond.png</file>
     </qresource>
 </RCC>
