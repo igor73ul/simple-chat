@@ -12,16 +12,7 @@ int main(int argc, char *argv[]) {
         a.setStyleSheet(style_file.readAll());
         style_file.close();
     }
-    auto result = -1;
-    //минимизировал исключения. остальное фатально, поэтому обрабатываем и выходим
-    try {
-        mainservice_widget::ManageWindow w;
-        w.show();
-        result = a.exec();
-    }
-    catch(const std::exception & exc) {
-        std::cerr<<"Exception:"<<exc.what()<<std::endl;
-        return result;
-    }
-    return result;
+    mainservice_widget::ManageWindow w;
+    w.show();
+    return a.exec();
 }
