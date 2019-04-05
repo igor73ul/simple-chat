@@ -15,7 +15,7 @@ namespace chatclient {
 class ChatWindow : public QWidget {
     Q_OBJECT
 public:
-    explicit ChatWindow(QWidget *parent = 0);
+    explicit ChatWindow(QWidget *parent = nullptr);
     ~ChatWindow() = default;
     Q_INVOKABLE void getUserList(const QStringList);
 public slots:

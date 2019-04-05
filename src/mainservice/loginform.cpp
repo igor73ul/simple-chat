@@ -11,7 +11,7 @@ LoginForm::LoginForm(QWidget *parent) :
 QString LoginForm::userName() {
     if(loop.exec() > 0)
         return login_form->lineEdit->text();
-    return QString();
+    return QString("empty");
 }
 
 }

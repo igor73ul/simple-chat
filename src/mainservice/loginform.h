@@ -17,7 +17,7 @@ namespace chatclient {
 class LoginForm : public QDialog {
     Q_OBJECT
 public:
-    explicit LoginForm(QWidget *parent = 0);
+    explicit LoginForm(QWidget *parent = nullptr);
     ~LoginForm() = default;
     QString userName();//имя которое ввёл пользователь или пусто в случаи отмены
 private:

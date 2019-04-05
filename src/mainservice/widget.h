@@ -13,11 +13,11 @@ class Widget;
 }
 
 namespace  mainservice_widget {
-//GUI-класс для управления Симулятором чата: запустить/остановить серверную часть, добавить клиента
+//GUI-класс для управления Симулятором чата: запустить серверную часть, добавить клиента
 class ManageWindow : public QWidget {
     Q_OBJECT
 public:
-    explicit ManageWindow(QWidget *parent = 0);
+    explicit ManageWindow(QWidget *parent = nullptr);
     ~ManageWindow();
 private:
     void closeEvent(QCloseEvent *);

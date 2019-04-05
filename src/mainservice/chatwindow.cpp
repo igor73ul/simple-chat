@@ -27,9 +27,8 @@ ChatWindow::ChatWindow(QWidget *parent) :
 }
 
 void ChatWindow::addUser(const QString userName) {
-    auto newUser = new QListWidgetItem(userName);
+    auto newUser = new QListWidgetItem(userName, chat_window_->clientList);
     newUser->setIcon(kAvatarIcon);
-    chat_window_->clientList->addItem(newUser);
     chat_window_->textBrowser->appendHtml("<b>" + userName + "</b>" + kConectUserText);
 }
 
