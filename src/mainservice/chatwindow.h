@@ -18,10 +18,9 @@ public:
     explicit ChatWindow(QWidget *parent = nullptr);
     ~ChatWindow() = default;
     Q_INVOKABLE void getUserList(const QStringList);
-public slots:
-    void addUser(const QString );
-    void delUser(const QString );
-    void newMsgAvailable(const QString );
+    Q_INVOKABLE void addUser(const QString );
+    Q_INVOKABLE void delUser(const QString );
+    Q_INVOKABLE void newMsgAvailable(const QString );
 private:
     void closeEvent(QCloseEvent *);
     void keyReleaseEvent(QKeyEvent *);

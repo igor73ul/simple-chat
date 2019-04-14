@@ -19,18 +19,19 @@ bool ServerController::sendUserList(QObject* user) {
     Q_FOREACH(auto one_user, register_users) {
         result<<one_user->objectName();
     }
-    return QMetaObject::invokeMethod(user, "getUserList", Qt::QueuedConnection, Q_ARG(const QStringList, result));
+    const char kGetUserListCommand[] = {"getUserList"};
+    return QMetaObject::invokeMethod(user, kGetUserListCommand, Qt::QueuedConnection, Q_ARG(const QStringList, result));
 }
 
 void ServerController::registerNewUser(QObject* user) {
 
     if(user != nullptr) {
         if(connect(user, &QObject::destroyed, this, &ServerController::deleteUser, Qt::QueuedConnection) &&
-                connect(user, SIGNAL(sendUserText(const QString)), this, SLOT(readUserMessage(const QString)), Qt::QueuedConnection))
-        {
+                connect(user, SIGNAL(sendUserText(const QString)), this, SLOT(readUserMessage(const QString)), Qt::QueuedConnection)) {
             if(sendUserList(user)) {
                 register_users.append(user);
-                resend("addUser", Q_ARG(const QString, user->objectName()), user);
+                const char kAddUserCommand[] = {"addUser"};
+                resend(kAddUserCommand, Q_ARG(const QString, user->objectName()), user);
             }
         }
     }
@@ -41,7 +42,8 @@ void ServerController::deleteUser() {
     if(!register_users.contains(user))
         return;
     register_users.removeOne(sender());
-    resend("delUser", Q_ARG(const QString, user->objectName()), nullptr);
+    const char kDelUserCommand[] = {"delUser"};
+    resend(kDelUserCommand, Q_ARG(const QString, user->objectName()), nullptr);
 }
 
 void ServerController::readUserMessage(const QString text) {
@@ -49,7 +51,8 @@ void ServerController::readUserMessage(const QString text) {
     if(!register_users.contains(user))
         return;
     const QString message("<b>" + user->objectName() + ":</b> " + text);
-    resend("newMsgAvailable", Q_ARG(const QString, message), nullptr);
+    const char kNewMsgCommand[] = {"newMsgAvailable"};
+    resend(kNewMsgCommand, Q_ARG(const QString, message), nullptr);
 }
 
 }

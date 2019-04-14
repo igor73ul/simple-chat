@@ -1,5 +1,7 @@
 #include "widget.h"
 
+#include <iostream>
+
 #include "chatwindow.h"
 
 namespace  mainservice_widget {
@@ -18,8 +20,13 @@ ManageWindow::~ManageWindow() {
 }
 
 void ManageWindow::on_newClient_released() {
-    auto client = new chatclient::ChatWindow();
-    QMetaObject::invokeMethod(&net_server_, "registerNewUser", Qt::QueuedConnection, Q_ARG(QObject*, client));
+    const char kRegNewUserCommand[] = {"registerNewUser"};
+    try {
+        auto client = new chatclient::ChatWindow();
+        QMetaObject::invokeMethod(&net_server_, kRegNewUserCommand, Qt::QueuedConnection, Q_ARG(QObject*, client));
+    } catch(const std::bad_alloc & exc) {
+        std::cerr<<"Exception:New Client:"<<exc.what()<<std::endl;
+    }
 }
 
 void ManageWindow::closeEvent(QCloseEvent *) {

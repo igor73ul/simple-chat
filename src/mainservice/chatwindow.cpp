@@ -1,5 +1,5 @@
 #include "chatwindow.h"
-
+#include <iostream>
 #include <QListWidgetItem>
 #include <QMessageBox>
 
@@ -27,8 +27,13 @@ ChatWindow::ChatWindow(QWidget *parent) :
 }
 
 void ChatWindow::addUser(const QString userName) {
-    auto newUser = new QListWidgetItem(userName, chat_window_->clientList);
-    newUser->setIcon(kAvatarIcon);
+    try {
+        auto newUser = new QListWidgetItem(userName, chat_window_->clientList);
+        newUser->setIcon(kAvatarIcon);
+    } catch (const std::bad_alloc &exc) {
+        std::cerr<<"Exception::addUser:"<<exc.what()<<std::endl;
+        return;
+    }
     chat_window_->textBrowser->appendHtml("<b>" + userName + "</b>" + kConectUserText);
 }
 
