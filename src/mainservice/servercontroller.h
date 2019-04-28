@@ -9,14 +9,14 @@ class ServerController: public QObject {
     Q_OBJECT
 public:
     ServerController(QObject* parent = nullptr);
-    Q_INVOKABLE void registerNewUser(QObject*);
+    Q_INVOKABLE void registerNewUser(QObject*);//добавить нового пользователя в систему
 public slots:
-    void deleteUser();
-    void readUserMessage(const QString text);
+    void deleteUser();//обработка события - пользователь отключился от сервера
+    void readUserMessage(const QString text);//обработка события - пользователь отправил текст
 private:
     void resend(const char *member, QGenericArgument arg, const QObject *exc);
     bool sendUserList(QObject*);
-    QObjectList register_users;
+    QObjectList register_users;//список пользователей на сервере
 };
 
 }

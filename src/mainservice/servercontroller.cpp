@@ -38,7 +38,7 @@ void ServerController::registerNewUser(QObject* user) {
 }
 
 void ServerController::deleteUser() {
-    QObject* user(sender());
+    auto user(sender());
     if(!register_users.contains(user))
         return;
     register_users.removeOne(sender());
@@ -47,10 +47,10 @@ void ServerController::deleteUser() {
 }
 
 void ServerController::readUserMessage(const QString text) {
-    QObject* user(sender());
+    auto user(sender());
     if(!register_users.contains(user))
         return;
-    const QString message("<b>" + user->objectName() + ":</b> " + text);
+    const auto message("<b>" + user->objectName() + ":</b> " + text);
     const char kNewMsgCommand[] = {"newMsgAvailable"};
     resend(kNewMsgCommand, Q_ARG(const QString, message), nullptr);
 }

@@ -23,7 +23,7 @@ private:
     void closeEvent(QCloseEvent *);
     std::unique_ptr<Ui::Widget> ui_form_;//Основная графическая форма
     simpleserver::ServerController net_server_;//server
-    QThread server_thread_;
+    QThread server_thread_;//отдельный поток для работы серверной части
     const QPixmap kConnectIco_;//иконки-состояния сервера
 private slots:
     void on_newClient_released();//команда - добавить пользователя

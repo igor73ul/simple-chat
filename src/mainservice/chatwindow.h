@@ -17,10 +17,11 @@ class ChatWindow : public QWidget {
 public:
     explicit ChatWindow(QWidget *parent = nullptr);
     ~ChatWindow() = default;
-    Q_INVOKABLE void getUserList(const QStringList);
-    Q_INVOKABLE void addUser(const QString );
-    Q_INVOKABLE void delUser(const QString );
-    Q_INVOKABLE void newMsgAvailable(const QString );
+    //интерфейс клиента
+    Q_INVOKABLE void getUserList(const QStringList);//получить список текущих пользователей
+    Q_INVOKABLE void addUser(const QString );//добавить нового пользователя
+    Q_INVOKABLE void delUser(const QString );//удалить пользователя
+    Q_INVOKABLE void newMsgAvailable(const QString );//получить новое сообщение
 private:
     void closeEvent(QCloseEvent *);
     void keyReleaseEvent(QKeyEvent *);
@@ -31,9 +32,9 @@ private:
     kMyNameText;//приписка для идентификации самого себя
     std::unique_ptr<Ui::ChatWindow> chat_window_;//GUI форма
 private slots:
-    void on_sendButton_released();
+    void on_sendButton_released();//обработка кнопки - отправить
 signals:
-    void sendUserText(const QString);
+    void sendUserText(const QString);//отправить сообщение на сервер
 };
 
 }

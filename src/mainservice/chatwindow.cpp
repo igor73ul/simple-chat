@@ -15,7 +15,7 @@ ChatWindow::ChatWindow(QWidget *parent) :
     kMyNameText("(It`s me)"),
     chat_window_(new Ui::ChatWindow) {
     chat_window_->setupUi(this);
-    const QString myName = LoginForm().userName();
+    const auto myName = LoginForm().userName();
     setObjectName(myName);
     setAttribute(Qt::WA_DeleteOnClose);
     //Центруем позицию кнопки-Send в ячейке
@@ -56,7 +56,7 @@ void ChatWindow::newMsgAvailable(const QString txt) {
 }
 
 void ChatWindow::on_sendButton_released() {
-    const QString userText(chat_window_->textEdit->toPlainText());
+    const auto userText(chat_window_->textEdit->toPlainText());
     if(userText.isEmpty())
         return;
     emit sendUserText(userText);
